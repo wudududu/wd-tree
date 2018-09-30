@@ -1,27 +1,35 @@
 <template>
   <div id="app">
-    <wd-tree />
+    <wd-tree :treeNodes="treeNodes" />
   </div>
 </template>
 
 <script>
 import HelloWorld from './components/HelloWorld'
-import wdTree from './components/wd-tree'
+// import wdTree from './components/wd-tree.vue'
 export default {
   name: 'App',
   components: {
     HelloWorld,
+    // wdTree
+  },
+  data() {
+    return {
+      treeNodes: [
+        {
+          name: 'node1',
+          nodeType: 'parent',
+          childs: [{name: 'node1-1', nodeType: 'child'}, {name: 'node1-2', nodeType: 'parent', childs: [{name: 'node1-2-1', nodeType: 'child'}]}]
+        },
+        {
+          name: 'node2',
+          nodeType: 'child'
+        }
+      ]
+    }
   }
 }
 </script>
 
 <style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
 </style>

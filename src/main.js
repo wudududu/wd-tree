@@ -5,10 +5,10 @@ import App from './App'
 import wdTree from './components/wd-tree.js'
 
 Vue.config.productionTip = false
-
+Vue.use(wdTree)
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
-  components: { App, wdTree },
+  components: { App },
   template: '<App/>'
 })
