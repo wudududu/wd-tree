@@ -1,6 +1,7 @@
 <template>
   <div id="app">
-    <wd-tree :treeNodes="treeNodes" />
+    <wd-tree :treeNodes="treeNodes"
+      :checkBox="true"/>
     <button @click="addNodes">click me</button>
   </div>
 </template>
