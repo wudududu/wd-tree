@@ -2,6 +2,8 @@
   <!-- <div class="tree-container"> -->
     <ul class="root-ul">
       <li v-for="item in treeNodes"
+        :key="JSON.stringify(item)"
+        :name="JSON.stringify(item)"
         :class="[item.nodeType !== 'parent' ? 'li_leaf' : 'li_parent']">
         <img v-if="item.nodeType == 'parent'"
           src="../../static/arr_right.png"
@@ -83,6 +85,8 @@ export default {
           this.getChilds(lis[i], checkStatus)
         } else {
           lis[i].getElementsByClassName('check_box')[0].innerText = checkStatus
+          // 添加与删除类名
+          checkStatus == '' ? lis[i].classList.remove('checked') : lis[i].classList.add('checked')
         }
       }
     },
@@ -132,9 +136,19 @@ export default {
         this.getChilds(target.parentNode, checkStatus)
       } else {
         target.innerText = checkStatus
+        checkStatus == '' ? target.parentNode.classList.remove('checked') : target.parentNode.classList.add('checked')
       }
       // 向上遍历父节点
       this.setParentCheck(target.parentNode, checkStatus)
+      // 将已选元素发送给父组件
+      let tempELEs = document.getElementsByClassName('checked')
+      let temp = []
+
+      for (let i = 0; i < tempELEs.length; i++) {
+        temp.push(JSON.parse(tempELEs[i].getAttribute('name')))
+      }
+      console.log(temp)
+      this.$emit('check-change', temp)
     }
   }
 }

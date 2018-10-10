@@ -1,7 +1,8 @@
 <template>
   <div id="app">
     <wd-tree :treeNodes="treeNodes"
-      :checkBox="true"/>
+      :checkBox="true"
+      v-on:check-change="checkChangeHandle"/>
     <button @click="addNodes">click me</button>
   </div>
 </template>
@@ -44,6 +45,9 @@ export default {
       }
       parentNode.childs.fill(childNode)
       this.treeNodes.push(parentNode)
+    },
+    checkChangeHandle(val) {
+      console.log(val)
     }
   }
 }
